@@ -1,1 +1,2 @@
 # simplest chat system
+go
