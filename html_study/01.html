@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" >
+        <!-- <span v-if="isuser">
+            <label for="username">用户账户</label>
+            <input type="text" id="username" placeholder="用户账户" key="1">
+        </span>
+        <span v-else>
+            <label for="email">用户邮箱</label>
+            <input type="text" id="email" placeholder="用户邮箱" key="2">
+        </span>
+        <br>
+        <button @click="isuser=!isuser">切换登录方式</button> -->
+        <ul>
+            <li v-for="a1 in intarray">{{a1}}</li>
+        </ul>
+    </div>
+
+
+
+    
+<script src="js/vue.js"></script>
+<script>
+        const app = new Vue({
+        el:'#app',
+        data:{
+            isuser: true,
+            me:'123',
+            url: '<a href="http://www.baidu.com">baidu</a>',
+            imgurl: 'https://exp-picture.cdn.bcebos.com/aebdff86242fa872f80a7f52bfdaf05e4b23e9af.jpg?x-bce-process=image%2Fresize%2Cm_lfit%2Cw_500%2Climit_1%2Fquality%2Cq_80',
+            fora:{
+                name: "aa",
+                age: 90,
+                job: 00,
+            },
+            intarray:['a','b','c'],
+            letrt:['1','2'],
+        }
+    })
+    
+</script>
+</body>
+</html>
