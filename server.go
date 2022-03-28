@@ -5,6 +5,7 @@ import (
 	"io"
 	"net"
 	"sync"
+	"time"
 )
 
 type Server struct {
@@ -55,6 +56,7 @@ func (s *Server) Handler(conn net.Conn) {
 	user := NewUser(conn, s)
 
 	user.Online()
+	isLive := make(chan bool)
 	// s.mapLock.Lock()
 	// s.OnlineMap[user.Name] = user
 	// s.mapLock.Unlock()
@@ -77,9 +79,21 @@ func (s *Server) Handler(conn net.Conn) {
 			msg := string(buf[:n-1])
 			//广播消息
 			user.DoMessage(msg)
+			isLive <- true
 		}
 	}()
-	select {}
+	for {
+		select {
+		//用户活跃
+		case <-isLive:
+		//已超时强制登出
+		case <-time.After(time.Second * 300):
+			user.SendMsg("由于长时间不活跃您已经被踢")
+			close(user.C)
+			conn.Close()
+			return
+		}
+	}
 
 }
 
