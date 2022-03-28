@@ -1,1 +1,1 @@
-# simplest chat sysytem
+# simplest chat system
